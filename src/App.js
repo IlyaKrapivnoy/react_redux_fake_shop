@@ -2,7 +2,7 @@ import './App.css';
 import Header from './containers/Header';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ProductList from './containers/ProductList';
-import ProductDetail from './containers/ProductDetail';
+import ProductDetails from './containers/ProductDetails';
 
 function App() {
     return (
@@ -14,7 +14,7 @@ function App() {
                     <Route
                         path='/product/:productId'
                         exact
-                        component={ProductDetail}
+                        component={ProductDetails}
                     />
                     <Route>Page Not Found</Route>
                 </Switch>

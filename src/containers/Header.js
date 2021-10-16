@@ -1,8 +1,8 @@
 const Header = () => {
     return (
-        <div className='ui menu'>
+        <div className='ui fixed menu'>
             <div className='ui container center'>
-                <h2>FAKE SHOP</h2>
+                <h2>FakeShop</h2>
             </div>
         </div>
     );
