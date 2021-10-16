@@ -17,6 +17,7 @@ const ProductList = () => {
         dispatch(setProducts(response.data));
     };
 
+    console.log('Products:', products);
     useEffect(() => {
         fetchProducts();
     }, []);
