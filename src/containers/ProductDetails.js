@@ -11,14 +11,18 @@ const ProductDetails = () => {
     let product = useSelector((state) => state.product);
     const { image, title, price, category, description } = product;
     const dispatch = useDispatch();
-    const fetchProductDetail = async (id) => {
-        const response = await axios
-            .get(`https://fakestoreapi.com/products/${id}`)
-            .catch((err) => {
+
+    const fetchProductDetail = (id) => {
+        return async (dispatch) => {
+            try {
+                const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+                dispatch(selectedProduct(response.data));
+            } catch (err) {
                 console.log('Err: ', err);
-            });
-        dispatch(selectedProduct(response.data));
+            }
+        };
     };
+
 
     useEffect(() => {
         const fetchProductDetailAndCleanup = async () => {
