@@ -21,11 +21,18 @@ const ProductDetails = () => {
     };
 
     useEffect(() => {
-        if (productId && productId !== '') fetchProductDetail(productId);
-        return () => {
-            dispatch(removeSelectedProduct());
+        const fetchProductDetailAndCleanup = async () => {
+            if (productId && productId !== '') {
+                await fetchProductDetail(productId);
+            }
+            return () => {
+                dispatch(removeSelectedProduct());
+            };
         };
-    }, [productId]);
+
+        fetchProductDetailAndCleanup();
+    }, [dispatch, fetchProductDetail, productId, removeSelectedProduct]);
+
     return (
         <div className='ui grid container'>
             {Object.keys(product).length === 0 ? (
