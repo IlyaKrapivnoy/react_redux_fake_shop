@@ -23,7 +23,6 @@ const ProductDetails = () => {
         };
     };
 
-
     useEffect(() => {
         const fetchProductDetailAndCleanup = async () => {
             if (productId && productId !== '') {

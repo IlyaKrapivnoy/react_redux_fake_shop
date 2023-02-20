@@ -6,7 +6,7 @@ import ProductDetails from './containers/ProductDetails';
 
 function App() {
     return (
-        <div>
+        <>
             <Router>
                 <Header />
                 <Switch>
@@ -19,7 +19,7 @@ function App() {
                     <Route>Page Not Found</Route>
                 </Switch>
             </Router>
-        </div>
+        </>
     );
 }
 
