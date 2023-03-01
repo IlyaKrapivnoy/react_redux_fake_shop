@@ -1,13 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const ProductComponent = () => {
-    const products = useSelector((state) => state.allProducts.products);
+    const { products } = useSelector((state) => state.allProducts);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const renderList = products.map((product) => {
-        const { id, title, image, price, category } = product;
-
+    const renderList = products?.map(({ id, title, image, price, category }) => {
         return (
             <div className='four wide column' key={id}>
                 <Link to={`/product/${id}`}>
@@ -27,7 +26,20 @@ const ProductComponent = () => {
             </div>
         );
     });
-    return <>{renderList}</>;
-};
+
+    if (renderList.length > 0) {
+        setIsLoading(false);
+    }
+
+    return (
+        <>
+            {isLoading ? (
+                <div>Loading...</div>
+            ) : (
+                <div className='ui grid container'>{renderList}</div>
+            )}
+        </>
+    );
+}
 
 export default ProductComponent;
