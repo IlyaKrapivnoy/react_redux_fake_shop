@@ -27,7 +27,7 @@ const ProductComponent = () => {
         );
     });
 
-    if (products.length > 0) {
+    if (renderList.length > 0) {
         setIsLoading(false);
     }
 
