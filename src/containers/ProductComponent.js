@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const ProductComponent = () => {
     const { products } = useSelector((state) => state.allProducts);
+    const [isLoading, setIsLoading] = useState(true);
 
     const renderList = products?.map(({ id, title, image, price, category }) => {
         return (
@@ -25,7 +26,20 @@ const ProductComponent = () => {
             </div>
         );
     });
-    return <>{renderList}</>;
+
+    if (products.length > 0) {
+        setIsLoading(false);
+    }
+
+    return (
+        <>
+            {isLoading ? (
+                <div>Loading...</div>
+            ) : (
+                <div className='ui grid container'>{renderList}</div>
+            )}
+        </>
+    );
 }
 
 export default ProductComponent;
